@@ -40,9 +40,9 @@ class ChatScreen extends Component{
 		return(
 			<div className="ChatScreen">
 				<MessageArea messages={this.state.messages}/>
-				<ChatBar />
+				<ChatBar onMessageInput={this.postMessage}/>
 			</div>
-		)
+		);
 	}
 
 }

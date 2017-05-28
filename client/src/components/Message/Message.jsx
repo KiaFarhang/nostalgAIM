@@ -9,7 +9,7 @@ class Message extends Component {
 			<div className="Message">
 				<p>{this.props.body}</p>
 			</div>
-		)
+		);
 	}
 }
 

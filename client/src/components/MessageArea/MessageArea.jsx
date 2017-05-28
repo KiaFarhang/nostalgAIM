@@ -16,7 +16,7 @@ class MessageArea extends Component {
 			<div ClassName='MessageArea'>
 				{messageComponents}
 			</div>
-		)
+		);
 	}
 }
 
