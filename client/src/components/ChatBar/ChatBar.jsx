@@ -17,14 +17,14 @@ class ChatBar extends Component{
 
 	postMessage(event){
 		event.preventDefault();
-		this.props.onMessageInput(e.target.value);
+		this.props.onMessageInput(this.state.value);
 		this.setState({value: ''});
 	}
 
 	render(){
 		return(
 			<form onSubmit={this.postMessage}>
-				<textarea value={this.state.value} onChange={this.handleChange}/>
+				<input type='text' value={this.state.value} onChange={this.handleChange}/>
 				<input type='submit' value='Send' />
 			</form>
 		);

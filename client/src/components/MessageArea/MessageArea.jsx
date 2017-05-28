@@ -13,7 +13,7 @@ class MessageArea extends Component {
 		});
 
 		return(
-			<div ClassName='MessageArea'>
+			<div className='MessageArea'>
 				{messageComponents}
 			</div>
 		);

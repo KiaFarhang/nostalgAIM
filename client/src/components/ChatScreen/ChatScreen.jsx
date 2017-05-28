@@ -11,6 +11,7 @@
 
 import React, { Component } from 'react';
 import MessageArea from '../MessageArea/MessageArea';
+import ChatBar from '../ChatBar/ChatBar';
 
 const io = require('socket.io-client'); 
 const socket = io();  
