@@ -6,12 +6,7 @@ import './App.css';
 
 
 
-//ChatScreen {}
-  //MessageArea
-    //props: messages
-  //ChatBar
-    //TextArea
-    //Button
+
 
 
 

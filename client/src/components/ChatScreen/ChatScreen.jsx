@@ -2,6 +2,13 @@
 //messages to and from the server. It stores the current messages
 //in state, which it passes down to a child MessageArea component.
 
+//ChatScreen
+  //MessageArea
+  	//Messages
+  //ChatBar
+    //TextArea
+    //Button
+
 import React, { Component } from 'react';
 
 const io = require('socket.io-client'); 
@@ -32,7 +39,8 @@ class ChatScreen extends Component{
 		return(
 			<div className="ChatScreen">
 				<MessageArea messages={this.state.messages}/>
-
+				<ChatBar />
+			</div>
 		)
 	}
 
