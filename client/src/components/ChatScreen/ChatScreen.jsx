@@ -10,6 +10,7 @@
     //Button
 
 import React, { Component } from 'react';
+import MessageArea from '../MessageArea/MessageArea';
 
 const io = require('socket.io-client'); 
 const socket = io();  
