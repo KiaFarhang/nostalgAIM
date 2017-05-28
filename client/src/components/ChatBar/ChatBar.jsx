@@ -17,6 +17,7 @@ class ChatBar extends Component{
 
 	postMessage(event){
 		event.preventDefault();
+		console.log(event.target);
 		this.props.onMessageInput(this.state.value);
 		this.setState({value: ''});
 	}
