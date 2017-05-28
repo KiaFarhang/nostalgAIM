@@ -1,0 +1,16 @@
+{
+  "name": "nostalgAIM",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.4.0"
+  },
+  "scripts": {
+  	"start": "concurrently \"npm run server\" \"npm run client\"",
+  	"server": "node server.js",
+  	"client": "node start-client.js"
+  }
+}
