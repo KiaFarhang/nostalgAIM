@@ -15,7 +15,7 @@ class LoginScreen extends Component {
 	login(event){
 		event.preventDefault();
 		//Get the username from the form.
-		let username = event.target.getElementsByClassName('input')[0];
+		let username = event.target.getElementsByTagName('input')[0].value;
 		//Store the username in localStorage.
 		localStorage.setItem('nostalgAIM_username', xssFilters.inHTMLData(username));
 	}
