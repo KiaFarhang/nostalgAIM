@@ -33,6 +33,10 @@ class ChatScreen extends Component{
 		});
 	}
 
+	componentWillUnmount(){
+		socket.disconnect();
+	}
+
 	postMessage(msg){
 		socket.emit('chat message', msg);
 	}

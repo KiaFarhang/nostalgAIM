@@ -8,20 +8,20 @@ class LoginScreen extends Component {
 	constructor(props){
 		super(props);
 
-		this.login = this.login.bind(this);
+		// this.login = this.login.bind(this);
 	}
 
 	//This event logs the user in once they submit their credentials.
-	login(event){
-		event.preventDefault();
-		//Get the username from the form.
-		let username = event.target.getElementsByTagName('input')[0].value;
-		//Store the username in localStorage.
-		localStorage.setItem('nostalgAIM_username', xssFilters.inHTMLData(username));
-	}
+	// login(event){
+	// 	event.preventDefault();
+	// 	//Get the username from the form.
+	// 	let username = event.target.getElementsByTagName('input')[0].value;
+	// 	//Store the username in localStorage.
+	// 	localStorage.setItem('nostalgAIM_username', xssFilters.inHTMLData(username));
+	// }
 	render(){
 		return(
-			<form onSubmit={this.login}>
+			<form onSubmit={this.props.toggleLogin}>
 				<label>User:
 					<input type='text'/>
 				</label>
