@@ -5,7 +5,7 @@ import {createStore} from 'redux';
 // import { Router, Route, browserHistory } from 'react-router';
 import nostalgAIM from './reducers';
 // import Root from './components/Root/Root';
-import AppContainer from './components/containers/AppContainer/AppContainer.jsx';
+import AppContainer from './components/containers/AppContainer';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 

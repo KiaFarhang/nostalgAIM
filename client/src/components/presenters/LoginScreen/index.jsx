@@ -2,15 +2,9 @@
 //rest of the application.
 
 import React, { Component } from 'react';
-const xssFilters = require('xss-filters');
+// const xssFilters = require('xss-filters');
 
 class LoginScreen extends Component {
-	constructor(props){
-		super(props);
-
-		// this.login = this.login.bind(this);
-	}
-
 	//This event logs the user in once they submit their credentials.
 	// login(event){
 	// 	event.preventDefault();

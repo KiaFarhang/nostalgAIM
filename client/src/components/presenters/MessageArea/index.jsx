@@ -3,7 +3,7 @@
 //from the state of its parent ChatScreen component.
 
 import React, { Component } from 'react';
-import Message from '../Message/Message';
+import Message from '../Message';
 
 class MessageArea extends Component {
 	render(){
