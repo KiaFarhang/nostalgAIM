@@ -14,7 +14,7 @@ import MessageArea from '../MessageArea';
 import ChatBar from '../ChatBar';
 
 const io = require('socket.io-client'); 
-const socket = io();  
+  
 
 class ChatScreen extends Component{
 	constructor(props){
@@ -26,7 +26,8 @@ class ChatScreen extends Component{
 
 	componentDidMount(){
 		let th = this;
-		socket.on('chat message', function(msg){
+		this.socket = io();
+		this.socket.on('chat message', function(msg){
 			let messageArray = th.state.messages;
 			messageArray.push(msg);
 			th.setState({messages: messageArray});
@@ -34,11 +35,11 @@ class ChatScreen extends Component{
 	}
 
 	componentWillUnmount(){
-		socket.disconnect();
+		this.socket.disconnect();
 	}
 
 	postMessage(msg){
-		socket.emit('chat message', msg);
+		this.socket.emit('chat message', msg);
 	}
 
 	render(){

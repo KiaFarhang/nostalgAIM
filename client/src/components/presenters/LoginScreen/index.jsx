@@ -5,17 +5,24 @@ import React, { Component } from 'react';
 // const xssFilters = require('xss-filters');
 
 class LoginScreen extends Component {
-	//This event logs the user in once they submit their credentials.
-	// login(event){
-	// 	event.preventDefault();
-	// 	//Get the username from the form.
-	// 	let username = event.target.getElementsByTagName('input')[0].value;
-	// 	//Store the username in localStorage.
-	// 	localStorage.setItem('nostalgAIM_username', xssFilters.inHTMLData(username));
-	// }
+
+	constructor(props){
+		super(props);
+
+		this.toggleLogin = this.toggleLogin.bind(this);
+	}
+
+	toggleLogin(event){
+		event.preventDefault();
+		//create a callable function equal to the dispatcher passed from the parent App
+		let func = this.props.toggleLogin;
+		//call the dispatcher
+		func();
+	}
+
 	render(){
 		return(
-			<form onSubmit={this.props.toggleLogin}>
+			<form onSubmit={this.toggleLogin}>
 				<label>User:
 					<input type='text'/>
 				</label>
