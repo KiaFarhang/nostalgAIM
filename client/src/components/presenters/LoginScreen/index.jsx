@@ -31,6 +31,9 @@ class LoginScreen extends Component {
 				<label>User:
 					<input type='text'/>
 				</label>
+				<label>Password:
+					<input type='password'/>
+				</label>
 				<input type='submit' value='Log In' />
 			</form>
 		)
