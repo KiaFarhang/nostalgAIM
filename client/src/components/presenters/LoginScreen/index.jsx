@@ -1,3 +1,5 @@
+// @flow
+
 //The login screen is where users log in to enter the
 //rest of the application.
 
@@ -5,14 +7,17 @@ import React, { Component } from 'react';
 // const xssFilters = require('xss-filters');
 
 class LoginScreen extends Component {
+	props: {
+		toggleLogin: Function
+	};
 
-	constructor(props){
+	constructor(props: Object){
 		super(props);
 
-		this.toggleLogin = this.toggleLogin.bind(this);
+		(this:any).toggleLogin = this.toggleLogin.bind(this);
 	}
 
-	toggleLogin(event){
+	toggleLogin(event: Event){
 		event.preventDefault();
 		//create a callable function equal to the dispatcher passed from the parent App
 		let func = this.props.toggleLogin;

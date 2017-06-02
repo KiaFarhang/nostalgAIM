@@ -15,11 +15,11 @@ import ChatBar from '../ChatBar';
 
 const io = require('socket.io-client'); 
   
-
 class ChatScreen extends Component{
-	constructor(props){
+
+	constructor(props: Object){
 		super(props);
-		this.postMessage = this.postMessage.bind(this);
+		(this:any).postMessage = this.postMessage.bind(this);
 
 		this.state = {messages: []};
 	}

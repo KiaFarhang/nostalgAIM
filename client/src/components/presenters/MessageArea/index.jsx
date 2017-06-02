@@ -1,3 +1,5 @@
+// @flow
+
 //The MessageArea component displays all the messages in a given thread
 //as individual Message components. //It inherits the messages as props
 //from the state of its parent ChatScreen component.

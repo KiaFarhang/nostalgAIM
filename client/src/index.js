@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
@@ -14,8 +16,6 @@ import './index.css';
 	//App - CONTAINER COMPONENT (track login state)
 		//(if logged in) ChatScreen
 		//(if not logged in) LoginScreen
-
-
 
 let store = createStore(nostalgAIM);
 
