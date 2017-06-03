@@ -5,12 +5,30 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const rfs = require('rotating-file-stream');
 const jwt = require('jsonwebtoken');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const xssFilters = require('xss-filters');
 
 const fs = require('fs');
+const path = require('path');
+
+//Importing rotating-file-stream and some helper functions
+
+
+
+//Reference the directory where we log all HTTP requests
+const logDirectory = path.join(__dirname, 'log');
+
+//Make sure log directory exists
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+//Create a rotating file write stream
+const accessLogStream = rfs('access.log', {
+	interval: '1d',
+	path: logDirectory
+});
 
 const database = require('./database.js');
 
@@ -27,7 +45,7 @@ const database = require('./database.js');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(morgan('dev'));
+app.use(morgan('combined', {stream: accessLogStream}));
 
 const apiRoutes = express.Router();
 

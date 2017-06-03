@@ -11,6 +11,7 @@
     "nodemon": "^1.11.0",
     "pg": "^6.2.3",
     "redux-thunk": "^2.2.0",
+    "rotating-file-stream": "^1.2.2",
     "socket.io": "^2.0.1",
     "xss-filters": "^1.2.7"
   },
