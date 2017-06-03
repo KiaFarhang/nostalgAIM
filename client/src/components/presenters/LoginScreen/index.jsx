@@ -8,31 +8,31 @@ import React, { Component } from 'react';
 
 class LoginScreen extends Component {
 	props: {
-		toggleLogin: Function
+		logInUser: Function
 	};
 
 	constructor(props: Object){
 		super(props);
 
-		(this:any).toggleLogin = this.toggleLogin.bind(this);
+		(this:any).handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	toggleLogin(event: Event){
+	handleSubmit(event: Event){
 		event.preventDefault();
-		//create a callable function equal to the dispatcher passed from the parent App
-		let func = this.props.toggleLogin;
-		//call the dispatcher
-		func();
+		const username = this.refs.username.value;
+		const password = this.refs.password.value;
+		const creds = `username=${username}&password=${password}`;
+		this.props.logInUser(creds);
 	}
 
 	render(){
 		return(
-			<form onSubmit={this.toggleLogin}>
+			<form onSubmit={this.handleSubmit}>
 				<label>User:
-					<input type='text'/>
+					<input type='text' ref='username'/>
 				</label>
 				<label>Password:
-					<input type='password'/>
+					<input type='password' ref='password'/>
 				</label>
 				<input type='submit' value='Log In' />
 			</form>

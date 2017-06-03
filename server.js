@@ -1,4 +1,5 @@
 // @flow
+'use strict';
 
 const express = require('express');
 const app = express();
@@ -11,6 +12,18 @@ const xssFilters = require('xss-filters');
 
 const fs = require('fs');
 
+const database = require('./database.js');
+
+// let userObj = {username: 'kia', password: 'Isometric'};
+
+// database.addUser(userObj)
+//     .then(function(result) {
+//         console.log(result);
+//     })
+//     .catch(function(result) {
+//         console.log(result);
+//     });
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -22,45 +35,82 @@ apiRoutes.get('/', (req, res) => {
     res.json({ message: 'Yo' });
 });
 
+let user = {username: 'kia', password: 'Isometric'};
+
+// database.validateUser(user)
+// 	.then(result =>{
+// 		console.log(result);
+// 	})
+// 	.catch(result =>{
+// 		console.log(result);
+// 	}); 
+
 //Authentication endpoint
-apiRoutes.post('/authenticate', (req, res) => {
+apiRoutes.post('/login', (req, res) => {
+	let creds = req.body;
     //connect to the database
-    fs.readFile('mockusers.json', 'utf8', (err, data) => {
-        //if can't connect to DB, throw an error
-        if (err) {
-            return res.json({
-                success: false
-            });
-        } else {
-            let users = JSON.parse(data).users;
-            //check if the user exists
-            for (let i = 0; i < users.length; i++) {
-                if (req.body.name === users[i].username) {
-                    //if user exists, check if password is valid
-                    if (req.body.pass === users[i].password) {
+    database.isUserInDb(creds.username)
+        .then(result => {
+            if (result) {
+                database.validateUser(creds)
+                    .then(result => {
                         //if password is valid, send a token
-                        let token = jwt.sign({ user: req.body.name }, '4455566', { expiresIn: '2h' });
-                        return res.cookie('auth-token', 'test').json({
-                            success: true,
-                            token: token
-                        });
-                    }
-                    //if password is invalid, return an error
-                    else {
-                        return res.json({
-                            sucess: false
-                        });
-                    }
-                }
-                //if user doesn't exist, send an error
-                else {
-                    return res.json({
-                        success: false
+                        if (result) {
+                            let token = jwt.sign({ user: req.body.username }, '4455566', { expiresIn: '2h' });
+                            return res.json({
+                                success: true,
+                                token: token
+                            });
+                        }
+                    }).catch(err =>{
+                    	console.log('Error validating user', err);
                     });
-                }
+            } else {
+
             }
-        }
-    });
+        }).catch(err => {
+            console.log('Error checking for name', err);
+        });
+
+
+    //if can't connect to DB, throw an error
+    // if (err) {
+    //     return res.json({
+    //         success: false
+    //     });
+    // } else {
+    //     let users = JSON.parse(data).users;
+    //     //check if the user exists
+    //     for (let i = 0; i < users.length; i++) {
+    //         if (req.body.name === users[i].username) {
+    //             //if user exists, check if password is valid
+    //             if (req.body.pass === users[i].password) {
+
+    //                 return res.cookie('auth-token', 'test').json({
+    //                     success: true,
+    //                     token: token
+    //                 });
+    //             }
+    //             //if password is invalid, return an error
+    //             else {
+    //                 return res.json({
+    //                     sucess: false
+    //                 });
+    //             }
+    //         }
+    //         //if user doesn't exist, send an error
+    //         else {
+    //             return res.json({
+    //                 success: false
+    //             });
+    //         }
+    //     }
+    // }
+
+
+
+
+
 });
 
 //Middleware to protect certain routes behind authentication
@@ -83,7 +133,7 @@ apiRoutes.use((req, res, next) => {
 
 //Testing, remove before production
 apiRoutes.get('/secret', (req, res) => {
-	return res.json({success: 'you got in'});
+    return res.json({ success: 'you got in' });
 });
 
 io.on('connection', function(socket) {

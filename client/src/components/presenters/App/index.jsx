@@ -9,8 +9,8 @@ import './App.css';
 class App extends Component {
 
   props: {
-    isLoggedIn: boolean,
-    onLoginToggle: Function
+    isAuthenticated: boolean,
+    logInUser: Function
   };
 
   componentDidMount(){
@@ -20,8 +20,8 @@ class App extends Component {
   render(){
     return(
       <div className="App">
-        {!this.props.isLoggedIn && <LoginScreen toggleLogin={this.props.onLoginToggle}/>}
-        {this.props.isLoggedIn && <ChatScreen/>}
+        {!this.props.isAuthenticated && <LoginScreen logInUser={this.props.logInUser}/>}
+        {this.props.isAuthenticated && <ChatScreen/>}
       </div>
     )
   }

@@ -1,19 +1,20 @@
 // @flow
 
 import {connect} from 'react-redux';
-import {toggleLogIn} from '../../../actions';
+import {logInUser} from '../../../actions';
 import App from '../../presenters/App';
 
 const mapStateToProps = (state) => {
 	return {
-		isLoggedIn: state.isLoggedIn
+		isFetching: state.auth.isFetching,
+		isAuthenticated: state.auth.isAuthenticated
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLoginToggle: () => {
-			dispatch(toggleLogIn())
+		logInUser: (creds) => {
+			dispatch(logInUser(creds))
 		}
 	}
 }
