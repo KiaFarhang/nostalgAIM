@@ -19,7 +19,6 @@ class ChatScreen extends Component{
 
 	constructor(props: Object){
 		super(props);
-		(this:any).postMessage = this.postMessage.bind(this);
 
 		this.state = {messages: []};
 	}
@@ -38,7 +37,7 @@ class ChatScreen extends Component{
 		this.socket.disconnect();
 	}
 
-	postMessage(msg){
+	postMessage = (msg) =>{
 		this.socket.emit('chat message', msg);
 	}
 

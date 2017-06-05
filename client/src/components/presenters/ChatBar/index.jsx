@@ -14,19 +14,11 @@ class ChatBar extends Component{
 	state = {
 		value: ''
 	};
-	constructor(props: Object){
-		super(props);
-		//Store the value of the message currently being typed in state.
-		// this.state = {value: ''};
-
-		(this:any).postMessage = this.postMessage.bind(this);
-		(this:any).handleChange = this.handleChange.bind(this);
-	}
 
 	//This event fires every time the user types in the input box, updating the state with the current
 	//contents of the box.
 
-	handleChange(event: Event){
+	handleChange = (event: Event) => {
 		if (event.target instanceof HTMLInputElement){	
 			this.setState({value: event.target.value});
 		}
@@ -35,7 +27,7 @@ class ChatBar extends Component{
 		}
 	}
 
-	postMessage(event: Event){
+	postMessage = (event: Event) => {
 		event.preventDefault();
 		//Fetch the message from the input box, 
 		let msg = this.state.value;

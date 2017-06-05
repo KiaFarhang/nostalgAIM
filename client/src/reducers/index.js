@@ -2,24 +2,12 @@ import { combineReducers } from 'redux';
 
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions';
 
-// const isLoggedIn = (state = false, action) =>{
-// 	switch (action.type) {
-// 		case 'TOGGLE_LOGIN':
-// 			return !state;
-// 		default:
-// 			return state
-// 	}
-// }
-
-
-
-
-
 //Auth reducer
 
-function auth(state = {
+const auth = function auth(state = {
     isFetching: false,
-    isAuthenticated: localStorage.getItem('naim_token') ? true : false
+    isAuthenticated: localStorage.getItem('naim_token') ? true : false,
+    errorMessage: ''
 }, action) {
     switch (action.type) {
         case LOGIN_REQUEST:
@@ -36,9 +24,9 @@ function auth(state = {
             });
         case LOGIN_FAILURE:
             return Object.assign({}, state, {
-                isFetching: true,
+                isFetching: false,
                 isAuthenticated: false,
-                errorMessage: action.message
+                errorMessage: action.errorMessage
             });
         default:
             return state;

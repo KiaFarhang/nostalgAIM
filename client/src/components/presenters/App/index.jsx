@@ -10,12 +10,10 @@ class App extends Component {
 
   props: {
     isAuthenticated: boolean,
+    isFetching: boolean,
+    errorMessage: String,
     logInUser: Function
   };
-
-  componentDidMount(){
-
-  }
 
   render(){
     return(

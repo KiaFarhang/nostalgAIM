@@ -7,7 +7,8 @@ import App from '../../presenters/App';
 const mapStateToProps = (state) => {
 	return {
 		isFetching: state.auth.isFetching,
-		isAuthenticated: state.auth.isAuthenticated
+		isAuthenticated: state.auth.isAuthenticated,
+		errorMessage: state.auth.errorMessage,
 	}
 }
 

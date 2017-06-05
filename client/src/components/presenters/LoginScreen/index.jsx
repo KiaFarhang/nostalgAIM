@@ -11,13 +11,7 @@ class LoginScreen extends Component {
 		logInUser: Function
 	};
 
-	constructor(props: Object){
-		super(props);
-
-		(this:any).handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	handleSubmit(event: Event){
+	handleSubmit = (event: Event) => {
 		event.preventDefault();
 		const username = this.refs.username.value;
 		const password = this.refs.password.value;
