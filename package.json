@@ -24,7 +24,7 @@
     "flow-bin": "^0.47.0"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\" \"npm run client\" \"flow\"",
     "server": "nodemon lib/server.js --exec babel-node",
     "build": "babel lib -d dist",
     "serve": "node dist/server.js",
